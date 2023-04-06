@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2023 at 10:53 AM
+-- Generation Time: Apr 06, 2023 at 10:43 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -45,6 +45,15 @@ CREATE TABLE `kategori` (
   `nama` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id`, `nama`) VALUES
+(1, 'Alat'),
+(2, 'Gedung'),
+(3, 'Lab');
+
 -- --------------------------------------------------------
 
 --
@@ -70,13 +79,25 @@ CREATE TABLE `produk` (
   `id` int(11) NOT NULL,
   `kode` varchar(10) NOT NULL,
   `nama` varchar(25) NOT NULL,
+  `id_kategori` int(11) DEFAULT NULL,
   `alamat` text NOT NULL,
-  `telp` text NOT NULL,
+  `kota` varchar(20) DEFAULT NULL,
+  `propinsi` varchar(20) DEFAULT NULL,
+  `telp` varchar(13) NOT NULL,
+  `harga_sewa` int(11) DEFAULT 0,
   `thumbnail` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `deleted_at` timestamp NULL DEFAULT NULL,
   `update_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`id`, `kode`, `nama`, `id_kategori`, `alamat`, `kota`, `propinsi`, `telp`, `harga_sewa`, `thumbnail`, `created_at`, `deleted_at`, `update_at`) VALUES
+(1, 'P01', 'Gedung Lima', 2, 'asdsadasd', 'Madiun', 'Jawa Timur', '08099', 200000, 'thumb1.png', '2023-04-06 04:43:54', NULL, NULL),
+(2, 'P02', 'Graha Mekar', 2, 'asdsadasd', 'Ponorogo', 'Jawa Timur', '08099', 200000, 'thumb2.png', '2023-04-06 04:43:54', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -120,7 +141,7 @@ ALTER TABLE `foto_produk`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `member`
@@ -132,7 +153,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
